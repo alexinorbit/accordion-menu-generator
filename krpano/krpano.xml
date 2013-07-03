@@ -1,0 +1,72 @@
+<krpano version="1.0.8" onstart="start();">
+
+	<!-- use only a grid preview pano to save download space ;-) -->
+	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF2F2F2,0x999999);" details="16" />
+	
+	<include url="accordion-menu.xml" />
+	<plugin url="plugins/editor.swf" origin="centerright" />
+	
+<action name="start">
+createMenu();
+showlog();
+trace(INSTRUCTIONS:);
+trace(1.insert the desired parameters in % (percentage) of your viewer* dimensions (*grided area) and press "Generate Menu"); 
+trace(2.to get the code of your newly generated menu: open the editor click on xml and copy the code.);
+</action>
+
+<action name="resetall">
+resetkrpano(); loadpano(%SWFPATH%/krpano.xml,null,IGNOREKEEP,BLEND(1));
+createMenu();
+</action>
+
+	<action name="resetkrpano">
+		<!-- remove all scene/data/action nodes -->
+		set(scene.count, 0);
+		set(data.count, 0);
+		set(action.count, 0);
+
+		<!-- stop all timers/tweens -->
+		breakall();
+
+		<!-- if there is a soundinterface - stop all sound -->
+		if(stopallsounds !== null, stopallsounds() );
+
+		<!-- remove all events -->
+		set(onstart, null);
+		set(events.onenterfullscreen, null);
+		set(events.onexitfullscreen, null);
+		set(events.onxmlcomplete, null);
+		set(events.onpreviewcomplete, null);
+		set(events.onloadcomplete, null);
+		set(events.onloaderror, null);
+		set(events.onkeydown, null);
+		set(events.onkeyup, null);
+		set(events.onviewchange, null);
+		set(events.onclick, null);
+		set(events.onmousedown, null);
+		set(events.onmouseup, null);
+		set(events.onmousewheel, null);
+		set(events.onidle, null);
+		set(events.onresize, null);
+
+		<!-- remove contextmenu items -->
+		set(contextmenu.item.count, 0);
+
+		<!-- remove custom cursors -->
+		set(cursors.url, null);
+
+		<!-- disable autorotate -->
+		set(autorotate.enabled, false);
+
+		<!-- reset area -->
+		set(area.x, 0);
+		set(area.y, 0);
+		set(area.width, 100%);
+		set(area.height, 100%);
+
+		<!-- enable flash10 -->
+		set(display.flash10, on);
+	</action>
+
+
+</krpano>

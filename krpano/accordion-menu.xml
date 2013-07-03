@@ -1,0 +1,311 @@
+<krpano>
+
+<action name="setParameters">
+txtadd(vargl_percent,get(vargl), '%'); <!-- VARGL Height of group buttons, append % to parsed value -->
+txtadd(vargw_percent,get(vargw), '%'); <!-- VARGW Width of group buttons, append % to parsed value -->
+txtadd(varel_percent,get(varel), '%'); <!-- VARGL Height of event buttons, append % to parsed value -->
+set(varew, get(vargw)); <!-- set width of event buttons equal to width of group buttons (VARGW % Width of group buttons) -->
+txtadd(varew_percent,get(varew), '%'); <!-- VAREW Height of event buttons, append % to value -->
+txtadd(varg1y0_percent,get(varg1y0), '%'); <!--  VARG1Y0 Y position of first group button, append % to parsed value -->
+add(varg2y0, varg1y0, vargl); <!--  VARG2Y0 Y position of second group button equals position of first group button increased by height of group buttons -->
+txtadd(varg2y0_percent,get(varg2y0), '%'); <!--append % to position of second group button -->
+add(varg3y0, varg2y0, vargl); <!--  VARG3Y0 Y position of third group button equals position of second group button increased by height of group buttons -->
+txtadd(varg3y0_percent,get(varg3y0), '%'); <!--append % to position of second group button -->
+add(varg4y0, varg3y0, vargl); <!--  VARG3Y0 Y position of fourth group button equals position of third group button increased by height of group buttons -->
+txtadd(varg4y0_percent,get(varg4y0), '%'); <!--append % to position of fourth group button -->
+</action>
+
+<action name="createGbutton"> <!-- action to create dynamically a Group textfield based button -->
+		addplugin(get(pname));
+		set(plugin[%pname].html,[p]%1[/p]);
+		set(plugin[%pname].x,%2);
+		set(plugin[%pname].y,%3);
+		set(plugin[%pname].width,%4);
+		set(plugin[%pname].height,%5);
+		set(plugin[%pname].url,%SWFPATH%/plugins/textfield.swf);
+		plugin[%pname].loadstyle(GroupButtonsStyle)
+</action>
+
+<action name="createEbutton"> <!-- action to create dynamically an Event textfield based button -->
+		addplugin(get(pname));
+		set(plugin[%pname].html,[p]%1[/p]);
+		set(plugin[%pname].x,%2);
+		set(plugin[%pname].y,%3);
+		set(plugin[%pname].width,%4);
+		set(plugin[%pname].height,%5);
+		set(plugin[%pname].url,%SWFPATH%/plugins/textfield.swf);
+		plugin[%pname].loadstyle(EventButtonsStyle)
+</action>
+
+<action name="addgroupBTN"> <!-- action to add Group button on stage -->
+		createGbutton(%1, %2, %3, %4, %5);
+		inc(ypos,get(vargl));		
+</action>
+
+<action name="addeventBTN"> <!-- action to add Event button on stage -->	
+		createEbutton(%1, %2, %3, %4, %5);
+</action>
+
+<action name="createMenu"> <!-- Generator of Accordion Menu -->
+<!-- set initial values of menu position -->
+setParameters();
+set(ypos,0);
+set(xpos, get(varg1x0));
+set(ypos2,0); 
+set(xpos2, get(varg1x0));
+add(ypos,varg1y0);
+
+for(set(i,1), i LE varn, inc(i), <!-- varn is quantity of group buttons -->
+	txtadd(pname, 'Btn_Group', get(i)); <!-- add custom text on group button -->
+	txtadd(xpos_percent,get(xpos), '%');
+	txtadd(ypos_percent,get(ypos), '%');
+	txtadd(gformation, 'GroupFormation', get(i), '()');
+	addgroupBTN(get(pname), get(xpos_percent), get(ypos_percent), get(vargw_percent), get(vargl_percent)); <!-- create and add a group button on specified X and Y positions based on parsed values-->
+	set(plugin[%pname].onclick, get(gformation)); <!-- set onclick event of newly created group button -->
+	<!-- specify current Y position (ypos2) for generating event buttons  -->
+	mul(ypos2,i, vargl);
+	add(ypos2,varg1y0);	
+		if(i == 1, set(varnx, get(varn1)); );  <!-- varn1 is quantity of event buttons for first group -->
+		if(i == 2, set(varnx, get(varn2)); );  <!-- varn2 is quantity of event buttons for second group -->
+		if(i == 3, set(varnx, get(varn3)););  <!-- varn3 is quantity of event buttons for third group -->
+		if(i == 4, set(varnx, get(varn4)););  <!-- varn4 is quantity of event buttons for fourth group -->
+	 	for(set(k,1), k LE varnx, inc(k), <!-- varnx is quantity of current group -->
+			txtadd(pname, 'Btn_Group', get(i),'_event_', get(k)); <!-- add custom text on event button -->
+			txtadd(xpos_percent,get(xpos), '%'); 
+			txtadd(ypos2_percent,get(ypos2), '%');
+			txtadd(gformation, 'GroupFormation', get(i), '()');
+			addeventBTN(get(pname), get(xpos_percent), get(ypos2_percent), get(varew_percent), get(varel_percent));  <!-- create and add an event button on specified X and Y positions based on parsed values-->
+			inc(ypos2,get(varel)); <!--increase current Y positions by height of event buttons -->
+			set(plugin[%pname].onclick, get(gformation)); <!-- set onclick event of newly created event button -->
+			);
+	);
+</action>
+	
+<!-- SETTING DIFFERENT FORMATIONS -->
+<action name="GroupFormation1"> <!-- Expand Group 1 Button, Show event buttons of Group 1, Move rest of Group Buttons to convinient position, Hide the rest of event buttons -->
+hideGroup2();
+hideGroup3();
+hideGroup4();
+set(varg1y1, get(varg1y0));
+set(plugin[Btn_Group2].blendmode, normal);
+set(plugin[Btn_Group3].blendmode, normal);
+set(plugin[Btn_Group4].blendmode, normal);
+set(plugin[Btn_Group1].blendmode, hardlight);
+mul(varqevents1, varn1, varel);
+add(varg1l1,varqevents1,vargl);
+txtadd(varg1l1_percent,get(varg1l1), '%');
+tween(plugin[Btn_Group1].height, get(varg1l1_percent));
+tween(plugin[Btn_Group2].height, get(vargl_percent));
+tween(plugin[Btn_Group3].height, get(vargl_percent));     
+tween(plugin[Btn_Group4].height, get(vargl_percent));
+add(varg2y1, varg1y1, varg1l1);
+txtadd(varg2y1_percent,get(varg2y1), '%');
+add(varg3y1, varg2y1, vargl);
+txtadd(varg3y1_percent,get(varg3y1), '%');
+add(varg4y1, varg3y1, vargl);
+txtadd(varg4y1_percent,get(varg4y1), '%');
+tween(plugin[Btn_Group2].y, get(varg2y1_percent));
+tween(plugin[Btn_Group3].y, get(varg3y1_percent));
+tween(plugin[Btn_Group4].y, get(varg4y1_percent));
+showGroup1();
+set(plugin[Btn_Group1].enabled,false);
+set(plugin[Btn_Group2].enabled,true);
+set(plugin[Btn_Group3].enabled,true);
+set(plugin[Btn_Group4].enabled,true);
+</action>
+
+<action name="GroupFormation2"> <!-- Expand Group 2 Button, Show event buttons of Group 2, Move rest of Group Buttons to convinient position, Hide the rest of event buttons -->
+hideGroup3();
+hideGroup1();
+hideGroup4();
+set(plugin[Btn_Group3].blendmode, normal);
+set(plugin[Btn_Group4].blendmode, normal);
+set(plugin[Btn_Group1].blendmode, normal);
+set(plugin[Btn_Group2].blendmode, hardlight);
+mul(varqevents2, varn2, varel);
+add(varg2l2,varqevents2,vargl);
+txtadd(varg2l2_percent,get(varg2l2), '%');
+tween(plugin[Btn_Group1].height, get(vargl_percent));
+tween(plugin[Btn_Group2].height, get(varg2l2_percent));
+tween(plugin[Btn_Group3].height, get(vargl_percent));
+tween(plugin[Btn_Group4].height, get(vargl_percent));
+set(varg2y2,get(varg2y0));
+add(varg3y2, varg2y2, varg2l2);
+txtadd(varg3y2_percent,get(varg3y2), '%');
+add(varg4y2, varg3y2, vargl);
+txtadd(varg4y2_percent,get(varg4y2), '%');
+tween(plugin[Btn_Group2].y, get(varg2y0_percent));
+tween(plugin[Btn_Group3].y, get(varg3y2_percent));
+tween(plugin[Btn_Group4].y, get(varg4y2_percent));
+showGroup2();
+set(plugin[Btn_Group1].enabled,true);
+set(plugin[Btn_Group2].enabled,false);
+set(plugin[Btn_Group3].enabled,true);
+set(plugin[Btn_Group4].enabled,true);
+</action>
+
+<action name="GroupFormation3"> <!-- Expand Group 3 Button, Show event buttons of Group 3, Move rest of Group Buttons to convinient position, Hide the rest of event buttons -->
+hideGroup2();
+hideGroup1();
+hideGroup4();
+set(plugin[Btn_Group2].blendmode, normal);
+set(plugin[Btn_Group4].blendmode, normal);
+set(plugin[Btn_Group1].blendmode, normal);
+set(plugin[Btn_Group3].blendmode, hardlight);
+mul(varqevents3, varn3, varel);
+add(varg3l3,varqevents3,vargl);
+txtadd(varg3l3_percent,get(varg3l3), '%');
+tween(plugin[Btn_Group3].height, get(varg3l3_percent));
+tween(plugin[Btn_Group1].height, get(vargl_percent));
+tween(plugin[Btn_Group2].height, get(vargl_percent));
+tween(plugin[Btn_Group4].height, get(vargl_percent));
+set(varg3y3,get(varg3y0));
+add(varg4y3, varg3y3, varg3l3);
+txtadd(varg4y3_percent,get(varg4y3), '%');
+tween(plugin[Btn_Group2].y, get(varg2y0_percent));
+tween(plugin[Btn_Group3].y, get(varg3y0_percent));
+tween(plugin[Btn_Group4].y, get(varg4y3_percent));
+showGroup3();
+set(plugin[Btn_Group1].enabled,true);
+set(plugin[Btn_Group2].enabled,true);
+set(plugin[Btn_Group3].enabled,false);
+set(plugin[Btn_Group4].enabled,true);
+</action>
+
+<action name="GroupFormation4"> <!-- Expand Group 4 Button, Show event buttons of Group 4, Move rest of Group Buttons to convinient position, Hide the rest of event buttons -->
+hideGroup2();
+hideGroup1();
+hideGroup3();
+set(plugin[Btn_Group2].blendmode, normal);
+set(plugin[Btn_Group3].blendmode, normal);
+set(plugin[Btn_Group1].blendmode, normal);
+set(plugin[Btn_Group4].blendmode, hardlight);
+mul(varqevents4, varn4, varel);
+add(varg4l4,varqevents4,vargl);
+txtadd(varg4l4_percent,get(varg4l4), '%');
+tween(plugin[Btn_Group4].height, get(varg4l4_percent));
+tween(plugin[Btn_Group1].height, get(vargl_percent));
+tween(plugin[Btn_Group2].height, get(vargl_percent));
+tween(plugin[Btn_Group3].height, get(vargl_percent));
+tween(plugin[Btn_Group2].y, get(varg2y0_percent));
+tween(plugin[Btn_Group3].y, get(varg3y0_percent));
+tween(plugin[Btn_Group4].y, get(varg4y0_percent));
+showGroup4();
+set(plugin[Btn_Group1].enabled,true);
+set(plugin[Btn_Group2].enabled,true);
+set(plugin[Btn_Group3].enabled,true);
+set(plugin[Btn_Group4].enabled,false);
+</action>
+
+<action name="showGroup1">
+	set(plugin[Btn_Group1_event_1].visible,true);
+	set(plugin[Btn_Group1_event_2].visible,true);
+	set(plugin[Btn_Group1_event_3].visible,true);
+	set(plugin[Btn_Group1_event_4].visible,true);
+	set(plugin[Btn_Group1_event_5].visible,true);
+	set(plugin[Btn_Group1_event_6].visible,true);	
+</action>
+<action name="hideGroup1">
+	set(plugin[Btn_Group1_event_1].visible,false);
+	set(plugin[Btn_Group1_event_2].visible,false);
+	set(plugin[Btn_Group1_event_3].visible,false);
+	set(plugin[Btn_Group1_event_4].visible,false);
+	set(plugin[Btn_Group1_event_5].visible,false);
+	set(plugin[Btn_Group1_event_6].visible,false);
+</action>
+<action name="showGroup2">
+	set(plugin[Btn_Group2_event_1].visible,true);
+	set(plugin[Btn_Group2_event_2].visible,true);
+	set(plugin[Btn_Group2_event_3].visible,true);
+	set(plugin[Btn_Group2_event_4].visible,true);
+	set(plugin[Btn_Group2_event_5].visible,true);
+	set(plugin[Btn_Group2_event_6].visible,true);
+</action>
+<action name="hideGroup2">
+	set(plugin[Btn_Group2_event_1].visible,false);
+	set(plugin[Btn_Group2_event_2].visible,false);
+	set(plugin[Btn_Group2_event_3].visible,false);
+	set(plugin[Btn_Group2_event_4].visible,false);
+	set(plugin[Btn_Group2_event_5].visible,false);
+	set(plugin[Btn_Group2_event_6].visible,false);
+</action>
+<action name="showGroup3">
+	set(plugin[Btn_Group3_event_1].visible,true);
+	set(plugin[Btn_Group3_event_2].visible,true);
+	set(plugin[Btn_Group3_event_3].visible,true);
+	set(plugin[Btn_Group3_event_4].visible,true);
+	set(plugin[Btn_Group3_event_5].visible,true);
+	set(plugin[Btn_Group3_event_6].visible,true);
+</action>
+<action name="hideGroup3">
+	set(plugin[Btn_Group3_event_1].visible,false);
+	set(plugin[Btn_Group3_event_2].visible,false);
+	set(plugin[Btn_Group3_event_3].visible,false);
+	set(plugin[Btn_Group3_event_4].visible,false);
+	set(plugin[Btn_Group3_event_5].visible,false);
+	set(plugin[Btn_Group3_event_6].visible,false);
+</action>
+<action name="showGroup4">
+	set(plugin[Btn_Group4_event_1].visible,true);
+	set(plugin[Btn_Group4_event_2].visible,true);
+	set(plugin[Btn_Group4_event_3].visible,true);
+	set(plugin[Btn_Group4_event_4].visible,true);
+	set(plugin[Btn_Group4_event_5].visible,true);
+	set(plugin[Btn_Group4_event_6].visible,true);
+</action>
+<action name="hideGroup4">
+	set(plugin[Btn_Group4_event_1].visible,false);
+	set(plugin[Btn_Group4_event_2].visible,false);
+	set(plugin[Btn_Group4_event_3].visible,false);
+	set(plugin[Btn_Group4_event_4].visible,false);
+	set(plugin[Btn_Group4_event_5].visible,false);
+	set(plugin[Btn_Group4_event_6].visible,false);
+</action>
+
+<!-- STYLE of Group Buttons -->	
+<style name="GroupButtonsStyle" 
+		url="%SWFPATH%/plugins/textfield.swf"
+        css="p{color:#d0d0d0; font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;  font-size:16px; margin-left:5; margin-right:5; text-align:center; }"
+        children="false"
+        visible="true"
+		onhover="set(backgroundcolor,0x707070);  "
+		
+        backgroundcolor="0x383838"
+		blendmode="normal"
+        roundedge="0"
+		textshadow="1"
+		bordercolor="0x282828"
+        borderwidth="1"
+      	alpha="1"
+		origin="lefttop" edge="lefttop"	
+	    onout="set(backgroundcolor,0x383838);"
+		accuracy="0"
+		zorder="1"
+		/>
+	
+<!-- STYLE od Event Buttons -->
+<style name="EventButtonsStyle"
+		url="%SWFPATH%/plugins/textfield.swf"
+	    keep="true"
+ 	    visible="false" enabled="true" handcursor="true" capture="true" children="true"
+ 	    zorder="50" 	        
+ 	    smoothing="true"
+ 	    origin="lefttop" edge="lefttop"		
+ 	    scale="1"
+        state="opened"	              
+		onhover="set(backgroundcolor,0x580000 );  "
+		onout="set(backgroundcolor,0xffffffff);  "
+		autosize="none"
+		background="true"    
+	    selectable="false"
+		css="p{color:#d0d0d0; font-family: Garamond, serif; line-height:100%; font-size:16px; margin-right:5; text-align:right; }"
+		backgroundcolor="0xffffffff"	
+        roundedge="0"
+        shadow="0"
+		bordercolor="0xFFFFFF"
+        borderwidth="0"
+		textshadow="1"
+        onloaded="set(alpha,1);"
+	/>
+
+</krpano>

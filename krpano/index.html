@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+	<title>simulzine demo#5 - customizable accordion menu - krpano script</title>
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link href='http://fonts.googleapis.com/css?family=Muli:300,300italic,400,400italic&subset=latin,greek-ext' rel='stylesheet' type='text/css'>
+	<style>
+		@media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow: visible; margin:0; padding:0; font-family:'Muli', Helvetica, sans-serif; font-size:14px; color:#909090; background-color:#303030; }
+		a{ color:#AAAAAA; text-decoration:underline; }
+		a:hover{ color:#FFFFFF; text-decoration:underline; }
+		input {
+			width:80%;
+		    border: 5px solid white; 
+		    -webkit-box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    -moz-box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    padding: 5px;
+		    background: rgba(255,255,255,0.5);
+		    margin: 0 0 10px 0;
+		}
+		select {
+			border: 4px solid white; 
+		    -webkit-box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    -moz-box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    box-shadow: 
+		      inset 0 0 8px  rgba(0,0,0,0.1),
+		            0 0 16px rgba(0,0,0,0.1); 
+		    padding: 5px;
+		    background: rgba(255,255,255,0.5);
+		    margin: 0 5px 10px 5px;
+		    font-size: 14px;
+			
+		}
+	label {
+		font-size:12px;
+	}
+	</style>
+</head>
+<body>
+
+<div id="top" style="text-align:right; padding:5px; background-color: accordion">
+accordion menu generator, version 0.1 ( view on github )
+</div>
+<div id="left" style="height:100%; width:15%; float:left; overflow:visible; text-align:right; padding:10px;">
+<div id="slogan" style="margin-top:-50px;">
+	
+
+<h3 style="font-size:12px;color:#ffffff; background-color:#202020;">generate an</h3>
+<h3 style="color:#ffffff; background-color:#202020; margin-top:-11px;">Accordion-Menu</h3>
+<h3 style="font-size:12px; color:#ffffff; background-color:#101010; margin-top:-15px;">for your krPano project</h3>
+</div>
+		
+		
+		<input type="text" name="vargw" id="sel_vargw" size="1" value='accordion menu width' onfocus=" if(this.value=='accordion menu width') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='accordion menu width', this.style.color='#555';}" />
+		 <br />
+		<input type="text" name="varg1y0" id="sel_varg1y0" size="1" value='enter x position' onfocus=" if(this.value=='enter x position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter x position', this.style.color='#555';}" /> <br />
+		<input type="text" name="varg1x0" id="sel_varg1x0" size="1" value='enter y position' onfocus=" if(this.value=='enter y position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter y position', this.style.color='#555';}" /> <br />
+		<input type="text" name="vargl" id="sel_vargl" size="1" value='group buttons height' onfocus=" if(this.value=='group buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='group buttons height', this.style.color='#555';}" /> <br />
+		<input type="text" name="varel" id="sel_varel" size="1" value='event buttons height' onfocus=" if(this.value=='event buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='event buttons height', this.style.color='#555';}" /> <br />
+		
+		<label for="varn">Group Buttons:</label><select name="varn" id="sel_varn" size="1">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		</select><br />
+		
+		<label for="varn1">event buttons G1 :</label><select name="varn1" id="sel_varn1">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		</select><br />
+		
+		<label for="varn2">event buttons G2 :</label><select name="varn2" id="sel_varn2">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		</select><br />
+		
+		<label for="varn3">event buttons G3 :</label><select name="varn3" id="sel_varn3">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		</select><br />
+		
+		<label for="varn4">event buttons G4 :</label><select name="varn4" id="sel_varn4">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		</select><br />
+		
+		<button type="button" onclick="reset();" style="float:left; cursor:pointer; font-size:18px; color:#303030; margin:20px 0 0 25px;">Generate Menu</button>
+		<div id="footer" style="text-align:right; margin-top: 15px;"> 
+			
+		</div>
+</div>
+
+</div>
+
+<div id="krpanoDIV" style="width:83%;height:100%;float:left;">
+	<noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+</div>
+
+<script src="swfkrpano.js"></script>
+
+<script>
+	
+function screenPano() 
+{		
+	return document.getElementById("krpanoSWFObject");
+}
+
+function reset()
+{
+	
+	
+	screenPano().call( "resetall()" );
+	
+	var vargl = document.getElementById('sel_vargl');	
+	var vargw = document.getElementById('sel_vargw');
+	var varel = document.getElementById('sel_varel');	
+	var varg1y0 = document.getElementById('sel_varg1y0');
+	var varg1x0 = document.getElementById('sel_varg1x0');
+	var varn = document.getElementById('sel_varn');
+	var varn1 = document.getElementById('sel_varn1');
+	var varn2 = document.getElementById('sel_varn2');
+	var varn3 = document.getElementById('sel_varn3');
+	var varn4 = document.getElementById('sel_varn4');
+	
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV"});
+
+		viewer.addVariable("xml", "krpano.xml");
+		viewer.addVariable("vargw", vargw.value);
+		viewer.addVariable("vargl", vargl.value);
+		viewer.addVariable("varel", varel.value);
+		viewer.addVariable("varg1y0", varg1y0.value);
+		viewer.addVariable("varg1x0", varg1x0.value);
+		viewer.addVariable("varn", varn.value);
+		viewer.addVariable("varn1", varn1.value);
+		viewer.addVariable("varn2", varn2.value);
+		viewer.addVariable("varn3", varn3.value);
+		viewer.addVariable("varn4", varn4.value);
+
+	viewer.embed();
+	
+}
+
+
+	var vargl = document.getElementById('sel_vargl');	
+	var vargw = document.getElementById('sel_vargw');
+	var varel = document.getElementById('sel_varel');	
+	var varg1y0 = document.getElementById('sel_varg1y0');
+	var varg1x0 = document.getElementById('sel_varg1x0');
+	var varn = document.getElementById('sel_varn');
+	var varn1 = document.getElementById('sel_varn1');
+	var varn2 = document.getElementById('sel_varn2');
+	var varn3 = document.getElementById('sel_varn3');
+	var varn4 = document.getElementById('sel_varn4');
+	
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV"});
+
+		viewer.addVariable("xml", "krpano.xml");
+		viewer.addVariable("vargw", vargw.value);
+		viewer.addVariable("vargl", vargl.value);
+		viewer.addVariable("varel", varel.value);
+		viewer.addVariable("varg1y0", varg1y0.value);
+		viewer.addVariable("varg1x0", varg1x0.value);
+		viewer.addVariable("varn", 0);
+		viewer.addVariable("varn1", varn1.value);
+		viewer.addVariable("varn2", varn2.value);
+		viewer.addVariable("varn3", varn3.value);
+		viewer.addVariable("varn4", varn4.value);
+
+	viewer.embed();
+
+</script>
+
+</body>
+</html>
