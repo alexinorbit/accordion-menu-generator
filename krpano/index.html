@@ -155,7 +155,7 @@ function reset()
 	var varn3 = document.getElementById('sel_varn3');
 	var varn4 = document.getElementById('sel_varn4');
 	
-	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV"});
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"auto", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
 		viewer.addVariable("vargw", vargw.value);
@@ -185,7 +185,7 @@ function reset()
 	var varn3 = document.getElementById('sel_varn3');
 	var varn4 = document.getElementById('sel_varn4');
 	
-	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV"});
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"auto", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
 		viewer.addVariable("vargw", vargw.value);

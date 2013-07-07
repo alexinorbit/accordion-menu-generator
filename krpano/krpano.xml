@@ -1,4 +1,4 @@
-<krpano version="1.0.8" onstart="start();">
+<krpano version="1.16.4" onstart="start();">
 
 	<!-- use only a grid preview pano to save download space ;-) -->
 	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF2F2F2,0x999999);" details="16" />
