@@ -11,7 +11,7 @@ createMenu();
 showlog();
 trace(INSTRUCTIONS:);
 trace(1.insert the desired parameters in % (percentage) of your viewer* dimensions (*grided area) and press "Generate Menu"); 
-trace(2.to get the code of your newly generated menu: open the editor click on xml and copy the code.);
+trace(2.to quickly get the code of your newly generated menu: open the editor click on xml and copy the code.);
 </action>
 
 <action name="resetall">

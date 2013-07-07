@@ -54,22 +54,19 @@
 </head>
 <body>
 
-<div id="top" style="text-align:right; padding:5px; background-color: accordion">
-accordion menu generator, version 0.1 ( view on github )
-</div>
-<div id="left" style="height:100%; width:15%; float:left; overflow:visible; text-align:right; padding:10px;">
-<div id="slogan" style="margin-top:-50px;">
+<div id="left" style="height:100%; width:15%; float:left; overflow:visible; text-align:right; padding:6px;">
+<div id="slogan" style="margin:0 10px 0 0">
 	
 
-<h3 style="font-size:12px;color:#ffffff; background-color:#202020;">generate an</h3>
-<h3 style="color:#ffffff; background-color:#202020; margin-top:-11px;">Accordion-Menu</h3>
-<h3 style="font-size:12px; color:#ffffff; background-color:#101010; margin-top:-15px;">for your krPano project</h3>
+<h3 style="font-size:12px;color:#e0e0e0; ">generate an</h3>
+<h3 style="color:#e0e0e0;  margin-top:-11px;">Accordion-Menu</h3>
+<h3 style="font-size:12px; color:#e0e0e0; margin-top:-15px;">for your krPano project</h3>
 </div>
 		
 		
 		<input type="text" name="vargw" id="sel_vargw" size="1" value='accordion menu width' onfocus=" if(this.value=='accordion menu width') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='accordion menu width', this.style.color='#555';}" />
 		 <br />
-		<input type="text" name="varg1y0" id="sel_varg1y0" size="1" value='enter x position' onfocus=" if(this.value=='enter x position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter x position', this.style.color='#555';}" /> <br />
+		<input type="text" name="varg1y0" id="sel_varg1y0" size="1" align="right"  value='enter x position' onfocus=" if(this.value=='enter x position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter x position', this.style.color='#555';}" /> <br />
 		<input type="text" name="varg1x0" id="sel_varg1x0" size="1" value='enter y position' onfocus=" if(this.value=='enter y position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter y position', this.style.color='#555';}" /> <br />
 		<input type="text" name="vargl" id="sel_vargl" size="1" value='group buttons height' onfocus=" if(this.value=='group buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='group buttons height', this.style.color='#555';}" /> <br />
 		<input type="text" name="varel" id="sel_varel" size="1" value='event buttons height' onfocus=" if(this.value=='event buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='event buttons height', this.style.color='#555';}" /> <br />
@@ -117,15 +114,18 @@ accordion menu generator, version 0.1 ( view on github )
 		<option value="6">6</option>
 		</select><br />
 		
-		<button type="button" onclick="reset();" style="float:left; cursor:pointer; font-size:18px; color:#303030; margin:20px 0 0 25px;">Generate Menu</button>
-		<div id="footer" style="text-align:right; margin-top: 15px;"> 
-			
+		<button type="button" onclick="reset();" style="cursor:pointer; font-size:20px; color:#303030; margin:20px 30px 0 0px;">
+			Generate <br /> Menu
+		</button>
+		
+		<div id="footer" style="position:absolute; bottom:0;text-align:right; padding:5px; margin: 20px 0 0 0;">
+			accordion menu generator <br /> ( view on github, v 0.1 )
 		</div>
 </div>
 
 </div>
 
-<div id="krpanoDIV" style="width:83%;height:100%;float:left;">
+<div id="krpanoDIV" style="width:84%;height:100%;float:left;">
 	<noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
 </div>
 
