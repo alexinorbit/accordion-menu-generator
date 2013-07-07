@@ -3,8 +3,17 @@
 
 <html>
 <head>
-	<title>simulzine demo#5 - customizable accordion menu - krpano script</title>
-	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<title>accordion menu generator - krpano flash & html5</title>
+	 <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		@-ms-viewport { width: device-width; }
+		@media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+	</style>
 	
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link href='http://fonts.googleapis.com/css?family=Muli:300,300italic,400,400italic&subset=latin,greek-ext' rel='stylesheet' type='text/css'>
@@ -61,6 +70,7 @@
 <h3 style="font-size:12px;color:#e0e0e0; ">generate an</h3>
 <h3 style="color:#e0e0e0;  margin-top:-11px;">Accordion-Menu</h3>
 <h3 style="font-size:12px; color:#e0e0e0; margin-top:-15px;">for your krPano project</h3>
+<h3 style="font-size:10px; color:rgb(170, 9, 9); margin-top:-15px;">(flash & html5)</h3>
 </div>
 		
 		
@@ -155,7 +165,7 @@ function reset()
 	var varn3 = document.getElementById('sel_varn3');
 	var varn4 = document.getElementById('sel_varn4');
 	
-	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"auto", passQueryParameters:true});
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"fallback", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
 		viewer.addVariable("vargw", vargw.value);
@@ -185,7 +195,7 @@ function reset()
 	var varn3 = document.getElementById('sel_varn3');
 	var varn4 = document.getElementById('sel_varn4');
 	
-	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"auto", passQueryParameters:true});
+	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"fallback", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
 		viewer.addVariable("vargw", vargw.value);

@@ -1,7 +1,6 @@
 <krpano version="1.16.4" onstart="start();">
-
-	<!-- use only a grid preview pano to save download space ;-) -->
-	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF2F2F2,0x999999);" details="16" />
+	
+	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF2F2F2,0x999999);" details="16" /><!-- use only a grid preview pano to save download space ;-) -->
 	
 	<include url="accordion-menu.xml" />
 	<plugin url="plugins/editor.swf" origin="centerright" />
@@ -15,7 +14,7 @@ trace(2.to quickly get the code of your newly generated menu: open the editor cl
 </action>
 
 <action name="resetall">
-resetkrpano(); loadpano(%SWFPATH%/krpano.xml,null,IGNOREKEEP,BLEND(1));
+resetkrpano(); loadscene(scene_x,null,IGNOREKEEP,BLEND(1));
 createMenu();
 </action>
 
@@ -68,5 +67,8 @@ createMenu();
 		set(display.flash10, on);
 	</action>
 
+	<scene name="scene_x">
+		<preview type="grid(cube,16,16,512,0xCCCCCC,0xF2F2F2,0x999999);" details="16" />
+	</scene>
 
 </krpano>
