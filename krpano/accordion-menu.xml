@@ -1,19 +1,20 @@
 <krpano>
 
 <action name="setParameters">
-txtadd(vargl_percent,get(vargl), '%'); <!-- VARGL Height of group buttons, append % to parsed value -->
-txtadd(vargw_percent,get(vargw), '%'); <!-- VARGW Width of group buttons, append % to parsed value -->
-txtadd(varel_percent,get(varel), '%'); <!-- VARGL Height of event buttons, append % to parsed value -->
-set(varew, get(vargw)); <!-- set width of event buttons equal to width of group buttons (VARGW % Width of group buttons) -->
+txtadd(varGH_percent,get(varGH), '%'); <!-- varGH Height of group buttons, append % to parsed value -->
+txtadd(varMW_percent,get(varMW), '%'); <!-- varMW Width of group buttons, append % to parsed value -->
+txtadd(varEH_percent,get(varEH), '%'); <!-- varGH Height of event buttons, append % to parsed value -->
+set(varew, get(varMW)); <!-- set width of event buttons equal to width of group buttons (varMW % Width of group buttons) -->
 txtadd(varew_percent,get(varew), '%'); <!-- VAREW Height of event buttons, append % to value -->
-txtadd(varg1y0_percent,get(varg1y0), '%'); <!--  VARG1Y0 Y position of first group button, append % to parsed value -->
-add(varg2y0, varg1y0, vargl); <!--  VARG2Y0 Y position of second group button equals position of first group button increased by height of group buttons -->
+txtadd(varY_percent,get(varY), '%'); <!--  varY Y position of first group button, append % to parsed value -->
+add(varg2y0, varY, varGH); <!--  VARG2Y0 Y position of second group button equals position of first group button increased by height of group buttons -->
 txtadd(varg2y0_percent,get(varg2y0), '%'); <!--append % to position of second group button -->
-add(varg3y0, varg2y0, vargl); <!--  VARG3Y0 Y position of third group button equals position of second group button increased by height of group buttons -->
+add(varg3y0, varg2y0, varGH); <!--  VARG3Y0 Y position of third group button equals position of second group button increased by height of group buttons -->
 txtadd(varg3y0_percent,get(varg3y0), '%'); <!--append % to position of second group button -->
-add(varg4y0, varg3y0, vargl); <!--  VARG3Y0 Y position of fourth group button equals position of third group button increased by height of group buttons -->
+add(varg4y0, varg3y0, varGH); <!--  VARG3Y0 Y position of fourth group button equals position of third group button increased by height of group buttons -->
 txtadd(varg4y0_percent,get(varg4y0), '%'); <!--append % to position of fourth group button -->
 </action>
+
 
 <action name="createGbutton"> <!-- action to create dynamically a Group textfield based button -->
 		addplugin(get(pname));
@@ -39,7 +40,7 @@ txtadd(varg4y0_percent,get(varg4y0), '%'); <!--append % to position of fourth gr
 
 <action name="addgroupBTN"> <!-- action to add Group button on stage -->
 		createGbutton(%1, %2, %3, %4, %5);
-		inc(ypos,get(vargl));		
+		inc(ypos,get(varGH));		
 </action>
 
 <action name="addeventBTN"> <!-- action to add Event button on stage -->	
@@ -50,32 +51,32 @@ txtadd(varg4y0_percent,get(varg4y0), '%'); <!--append % to position of fourth gr
 <!-- set initial values of menu position -->
 setParameters();
 set(ypos,0);
-set(xpos, get(varg1x0));
+set(xpos, get(varX));
 set(ypos2,0); 
-set(xpos2, get(varg1x0));
-add(ypos,varg1y0);
+set(xpos2, get(varX));
+add(ypos,varY);
 
-for(set(i,1), i LE varn, inc(i), <!-- varn is quantity of group buttons -->
+for(set(i,1), i LE varGN, inc(i), <!-- varGN is quantity of group buttons -->
 	txtadd(pname, 'Btn_Group', get(i)); <!-- add custom text on group button -->
 	txtadd(xpos_percent,get(xpos), '%');
 	txtadd(ypos_percent,get(ypos), '%');
 	txtadd(gformation, 'GroupFormation', get(i), '()');
-	addgroupBTN(get(pname), get(xpos_percent), get(ypos_percent), get(vargw_percent), get(vargl_percent)); <!-- create and add a group button on specified X and Y positions based on parsed values-->
+	addgroupBTN(get(pname), get(xpos_percent), get(ypos_percent), get(varMW_percent), get(varGH_percent)); <!-- create and add a group button on specified X and Y positions based on parsed values-->
 	set(plugin[%pname].onclick, get(gformation)); <!-- set onclick event of newly created group button -->
 	<!-- specify current Y position (ypos2) for generating event buttons  -->
-	mul(ypos2,i, vargl);
-	add(ypos2,varg1y0);	
-		if(i == 1, set(varnx, get(varn1)); );  <!-- varn1 is quantity of event buttons for first group -->
-		if(i == 2, set(varnx, get(varn2)); );  <!-- varn2 is quantity of event buttons for second group -->
-		if(i == 3, set(varnx, get(varn3)););  <!-- varn3 is quantity of event buttons for third group -->
-		if(i == 4, set(varnx, get(varn4)););  <!-- varn4 is quantity of event buttons for fourth group -->
-	 	for(set(k,1), k LE varnx, inc(k), <!-- varnx is quantity of current group -->
+	mul(ypos2,i, varGH);
+	add(ypos2,varY);	
+		if(i == 1, set(varGNx, get(varG1EN)); );  <!-- varG1EN is quantity of event buttons for first group -->
+		if(i == 2, set(varGNx, get(varG2EN)); );  <!-- varG2EN is quantity of event buttons for second group -->
+		if(i == 3, set(varGNx, get(varG3EN)););  <!-- varG3EN is quantity of event buttons for third group -->
+		if(i == 4, set(varGNx, get(varG4EN)););  <!-- varG4EN is quantity of event buttons for fourth group -->
+	 	for(set(k,1), k LE varGNx, inc(k), <!-- varGNx is quantity of current group -->
 			txtadd(pname, 'Btn_Group', get(i),'_event_', get(k)); <!-- add custom text on event button -->
 			txtadd(xpos_percent,get(xpos), '%'); 
 			txtadd(ypos2_percent,get(ypos2), '%');
 			txtadd(gformation, 'GroupFormation', get(i), '()');
-			addeventBTN(get(pname), get(xpos_percent), get(ypos2_percent), get(varew_percent), get(varel_percent));  <!-- create and add an event button on specified X and Y positions based on parsed values-->
-			inc(ypos2,get(varel)); <!--increase current Y positions by height of event buttons -->
+			addeventBTN(get(pname), get(xpos_percent), get(ypos2_percent), get(varew_percent), get(varEH_percent));  <!-- create and add an event button on specified X and Y positions based on parsed values-->
+			inc(ypos2,get(varEH)); <!--increase current Y positions by height of event buttons -->
 			set(plugin[%pname].onclick, get(gformation)); <!-- set onclick event of newly created event button -->
 			);
 	);
@@ -86,23 +87,23 @@ for(set(i,1), i LE varn, inc(i), <!-- varn is quantity of group buttons -->
 hideGroup2();
 hideGroup3();
 hideGroup4();
-set(varg1y1, get(varg1y0));
+set(varg1y1, get(varY));
 set(plugin[Btn_Group2].blendmode, normal);
 set(plugin[Btn_Group3].blendmode, normal);
 set(plugin[Btn_Group4].blendmode, normal);
 set(plugin[Btn_Group1].blendmode, hardlight);
-mul(varqevents1, varn1, varel);
-add(varg1l1,varqevents1,vargl);
+mul(varqevents1, varG1EN, varEH);
+add(varg1l1,varqevents1,varGH);
 txtadd(varg1l1_percent,get(varg1l1), '%');
 tween(plugin[Btn_Group1].height, get(varg1l1_percent));
-tween(plugin[Btn_Group2].height, get(vargl_percent));
-tween(plugin[Btn_Group3].height, get(vargl_percent));     
-tween(plugin[Btn_Group4].height, get(vargl_percent));
+tween(plugin[Btn_Group2].height, get(varGH_percent));
+tween(plugin[Btn_Group3].height, get(varGH_percent));     
+tween(plugin[Btn_Group4].height, get(varGH_percent));
 add(varg2y1, varg1y1, varg1l1);
 txtadd(varg2y1_percent,get(varg2y1), '%');
-add(varg3y1, varg2y1, vargl);
+add(varg3y1, varg2y1, varGH);
 txtadd(varg3y1_percent,get(varg3y1), '%');
-add(varg4y1, varg3y1, vargl);
+add(varg4y1, varg3y1, varGH);
 txtadd(varg4y1_percent,get(varg4y1), '%');
 tween(plugin[Btn_Group2].y, get(varg2y1_percent));
 tween(plugin[Btn_Group3].y, get(varg3y1_percent));
@@ -122,17 +123,17 @@ set(plugin[Btn_Group3].blendmode, normal);
 set(plugin[Btn_Group4].blendmode, normal);
 set(plugin[Btn_Group1].blendmode, normal);
 set(plugin[Btn_Group2].blendmode, hardlight);
-mul(varqevents2, varn2, varel);
-add(varg2l2,varqevents2,vargl);
+mul(varqevents2, varG2EN, varEH);
+add(varg2l2,varqevents2,varGH);
 txtadd(varg2l2_percent,get(varg2l2), '%');
-tween(plugin[Btn_Group1].height, get(vargl_percent));
+tween(plugin[Btn_Group1].height, get(varGH_percent));
 tween(plugin[Btn_Group2].height, get(varg2l2_percent));
-tween(plugin[Btn_Group3].height, get(vargl_percent));
-tween(plugin[Btn_Group4].height, get(vargl_percent));
+tween(plugin[Btn_Group3].height, get(varGH_percent));
+tween(plugin[Btn_Group4].height, get(varGH_percent));
 set(varg2y2,get(varg2y0));
 add(varg3y2, varg2y2, varg2l2);
 txtadd(varg3y2_percent,get(varg3y2), '%');
-add(varg4y2, varg3y2, vargl);
+add(varg4y2, varg3y2, varGH);
 txtadd(varg4y2_percent,get(varg4y2), '%');
 tween(plugin[Btn_Group2].y, get(varg2y0_percent));
 tween(plugin[Btn_Group3].y, get(varg3y2_percent));
@@ -152,13 +153,13 @@ set(plugin[Btn_Group2].blendmode, normal);
 set(plugin[Btn_Group4].blendmode, normal);
 set(plugin[Btn_Group1].blendmode, normal);
 set(plugin[Btn_Group3].blendmode, hardlight);
-mul(varqevents3, varn3, varel);
-add(varg3l3,varqevents3,vargl);
+mul(varqevents3, varG3EN, varEH);
+add(varg3l3,varqevents3,varGH);
 txtadd(varg3l3_percent,get(varg3l3), '%');
 tween(plugin[Btn_Group3].height, get(varg3l3_percent));
-tween(plugin[Btn_Group1].height, get(vargl_percent));
-tween(plugin[Btn_Group2].height, get(vargl_percent));
-tween(plugin[Btn_Group4].height, get(vargl_percent));
+tween(plugin[Btn_Group1].height, get(varGH_percent));
+tween(plugin[Btn_Group2].height, get(varGH_percent));
+tween(plugin[Btn_Group4].height, get(varGH_percent));
 set(varg3y3,get(varg3y0));
 add(varg4y3, varg3y3, varg3l3);
 txtadd(varg4y3_percent,get(varg4y3), '%');
@@ -180,13 +181,13 @@ set(plugin[Btn_Group2].blendmode, normal);
 set(plugin[Btn_Group3].blendmode, normal);
 set(plugin[Btn_Group1].blendmode, normal);
 set(plugin[Btn_Group4].blendmode, hardlight);
-mul(varqevents4, varn4, varel);
-add(varg4l4,varqevents4,vargl);
+mul(varqevents4, varG4EN, varEH);
+add(varg4l4,varqevents4,varGH);
 txtadd(varg4l4_percent,get(varg4l4), '%');
 tween(plugin[Btn_Group4].height, get(varg4l4_percent));
-tween(plugin[Btn_Group1].height, get(vargl_percent));
-tween(plugin[Btn_Group2].height, get(vargl_percent));
-tween(plugin[Btn_Group3].height, get(vargl_percent));
+tween(plugin[Btn_Group1].height, get(varGH_percent));
+tween(plugin[Btn_Group2].height, get(varGH_percent));
+tween(plugin[Btn_Group3].height, get(varGH_percent));
 tween(plugin[Btn_Group2].y, get(varg2y0_percent));
 tween(plugin[Btn_Group3].y, get(varg3y0_percent));
 tween(plugin[Btn_Group4].y, get(varg4y0_percent));

@@ -74,30 +74,21 @@
 </div>
 		
 		
-		<input type="text" name="vargw" id="sel_vargw" size="1" value='accordion menu width' onfocus=" if(this.value=='accordion menu width') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='accordion menu width', this.style.color='#555';}" />
+		<input type="text" name="varMW" id="sel_varMW" size="1" value='accordion menu width' onfocus=" if(this.value=='accordion menu width') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='accordion menu width', this.style.color='#555';}" />
 		 <br />
-		<input type="text" name="varg1y0" id="sel_varg1y0" size="1" align="right"  value='enter x position' onfocus=" if(this.value=='enter x position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter x position', this.style.color='#555';}" /> <br />
-		<input type="text" name="varg1x0" id="sel_varg1x0" size="1" value='enter y position' onfocus=" if(this.value=='enter y position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter y position', this.style.color='#555';}" /> <br />
-		<input type="text" name="vargl" id="sel_vargl" size="1" value='group buttons height' onfocus=" if(this.value=='group buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='group buttons height', this.style.color='#555';}" /> <br />
-		<input type="text" name="varel" id="sel_varel" size="1" value='event buttons height' onfocus=" if(this.value=='event buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='event buttons height', this.style.color='#555';}" /> <br />
+		<input type="text" name="varY" id="sel_varY" size="1" align="right"  value='enter x position' onfocus=" if(this.value=='enter x position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter x position', this.style.color='#555';}" /> <br />
+		<input type="text" name="varX" id="sel_varX" size="1" value='enter y position' onfocus=" if(this.value=='enter y position') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='enter y position', this.style.color='#555';}" /> <br />
+		<input type="text" name="varGH" id="sel_varGH" size="1" value='group buttons height' onfocus=" if(this.value=='group buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='group buttons height', this.style.color='#555';}" /> <br />
+		<input type="text" name="varEH" id="sel_varEH" size="1" value='event buttons height' onfocus=" if(this.value=='event buttons height') {this.value='', this.style.color='rgb(170, 9, 9)'};" onblur="if(this.value=='') {this.value='event buttons height', this.style.color='#555';}" /> <br />
 		
-		<label for="varn">Group Buttons:</label><select name="varn" id="sel_varn" size="1">
+		<label for="varGN">Group Buttons:</label><select name="varGN" id="sel_varGN" size="1">
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
 		<option value="4">4</option>
 		</select><br />
 		
-		<label for="varn1">event buttons G1 :</label><select name="varn1" id="sel_varn1">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		</select><br />
-		
-		<label for="varn2">event buttons G2 :</label><select name="varn2" id="sel_varn2">
+		<label for="varG1EN">event buttons G1 :</label><select name="varG1EN" id="sel_varG1EN">
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
@@ -106,7 +97,7 @@
 		<option value="6">6</option>
 		</select><br />
 		
-		<label for="varn3">event buttons G3 :</label><select name="varn3" id="sel_varn3">
+		<label for="varG2EN">event buttons G2 :</label><select name="varG2EN" id="sel_varG2EN">
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
@@ -115,7 +106,16 @@
 		<option value="6">6</option>
 		</select><br />
 		
-		<label for="varn4">event buttons G4 :</label><select name="varn4" id="sel_varn4">
+		<label for="varG3EN">event buttons G3 :</label><select name="varG3EN" id="sel_varG3EN">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		</select><br />
+		
+		<label for="varG4EN">event buttons G4 :</label><select name="varG4EN" id="sel_varG4EN">
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
@@ -154,60 +154,60 @@ function reset()
 	
 	screenPano().call( "resetall()" );
 	
-	var vargl = document.getElementById('sel_vargl');	
-	var vargw = document.getElementById('sel_vargw');
-	var varel = document.getElementById('sel_varel');	
-	var varg1y0 = document.getElementById('sel_varg1y0');
-	var varg1x0 = document.getElementById('sel_varg1x0');
-	var varn = document.getElementById('sel_varn');
-	var varn1 = document.getElementById('sel_varn1');
-	var varn2 = document.getElementById('sel_varn2');
-	var varn3 = document.getElementById('sel_varn3');
-	var varn4 = document.getElementById('sel_varn4');
+	var varGH = document.getElementById('sel_varGH');	
+	var varMW = document.getElementById('sel_varMW');
+	var varEH = document.getElementById('sel_varEH');	
+	var varY = document.getElementById('sel_varY');
+	var varX = document.getElementById('sel_varX');
+	var varGN = document.getElementById('sel_varGN');
+	var varG1EN = document.getElementById('sel_varG1EN');
+	var varG2EN = document.getElementById('sel_varG2EN');
+	var varG3EN = document.getElementById('sel_varG3EN');
+	var varG4EN = document.getElementById('sel_varG4EN');
 	
 	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"fallback", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
-		viewer.addVariable("vargw", vargw.value);
-		viewer.addVariable("vargl", vargl.value);
-		viewer.addVariable("varel", varel.value);
-		viewer.addVariable("varg1y0", varg1y0.value);
-		viewer.addVariable("varg1x0", varg1x0.value);
-		viewer.addVariable("varn", varn.value);
-		viewer.addVariable("varn1", varn1.value);
-		viewer.addVariable("varn2", varn2.value);
-		viewer.addVariable("varn3", varn3.value);
-		viewer.addVariable("varn4", varn4.value);
+		viewer.addVariable("varMW", varMW.value);
+		viewer.addVariable("varGH", varGH.value);
+		viewer.addVariable("varEH", varEH.value);
+		viewer.addVariable("varY", varY.value);
+		viewer.addVariable("varX", varX.value);
+		viewer.addVariable("varGN", varGN.value);
+		viewer.addVariable("varG1EN", varG1EN.value);
+		viewer.addVariable("varG2EN", varG2EN.value);
+		viewer.addVariable("varG3EN", varG3EN.value);
+		viewer.addVariable("varG4EN", varG4EN.value);
 
 	viewer.embed();
 	
 }
 
 
-	var vargl = document.getElementById('sel_vargl');	
-	var vargw = document.getElementById('sel_vargw');
-	var varel = document.getElementById('sel_varel');	
-	var varg1y0 = document.getElementById('sel_varg1y0');
-	var varg1x0 = document.getElementById('sel_varg1x0');
-	var varn = document.getElementById('sel_varn');
-	var varn1 = document.getElementById('sel_varn1');
-	var varn2 = document.getElementById('sel_varn2');
-	var varn3 = document.getElementById('sel_varn3');
-	var varn4 = document.getElementById('sel_varn4');
+	var varGH = document.getElementById('sel_varGH');	
+	var varMW = document.getElementById('sel_varMW');
+	var varEH = document.getElementById('sel_varEH');	
+	var varY = document.getElementById('sel_varY');
+	var varX = document.getElementById('sel_varX');
+	var varGN = document.getElementById('sel_varGN');
+	var varG1EN = document.getElementById('sel_varG1EN');
+	var varG2EN = document.getElementById('sel_varG2EN');
+	var varG3EN = document.getElementById('sel_varG3EN');
+	var varG4EN = document.getElementById('sel_varG4EN');
 	
 	var viewer = createPanoViewer({swf:"krpano.swf", id:"krpanoSWFObject", target:"krpanoDIV", html5:"fallback", passQueryParameters:true});
 
 		viewer.addVariable("xml", "krpano.xml");
-		viewer.addVariable("vargw", vargw.value);
-		viewer.addVariable("vargl", vargl.value);
-		viewer.addVariable("varel", varel.value);
-		viewer.addVariable("varg1y0", varg1y0.value);
-		viewer.addVariable("varg1x0", varg1x0.value);
-		viewer.addVariable("varn", 0);
-		viewer.addVariable("varn1", varn1.value);
-		viewer.addVariable("varn2", varn2.value);
-		viewer.addVariable("varn3", varn3.value);
-		viewer.addVariable("varn4", varn4.value);
+		viewer.addVariable("varMW", varMW.value);
+		viewer.addVariable("varGH", varGH.value);
+		viewer.addVariable("varEH", varEH.value);
+		viewer.addVariable("varY", varY.value);
+		viewer.addVariable("varX", varX.value);
+		viewer.addVariable("varGN", 0);
+		viewer.addVariable("varG1EN", varG1EN.value);
+		viewer.addVariable("varG2EN", varG2EN.value);
+		viewer.addVariable("varG3EN", varG3EN.value);
+		viewer.addVariable("varG4EN", varG4EN.value);
 
 	viewer.embed();
 
